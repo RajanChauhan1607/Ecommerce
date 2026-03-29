@@ -1,12 +1,13 @@
 import React from 'react'
-import Img1 from "../../assets/shirt/Img1.avif"
-import Img2 from "../../assets/shirt/Img2.webp"
-import Img3 from "../../assets/shirt/Img3.webp"
 import { FaStar } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+
+
 
 
 const TopProducts = ({products, loading}) => {
-
+    
+const navigate = useNavigate();
     if (loading) {
     return <p className="text-center">Loading products...</p>;
   }
@@ -34,7 +35,7 @@ const TopProducts = ({products, loading}) => {
                         hover:text-white relative shadow-xl duration-300 group max-w-[300px]'>
                             {/* image section */}
                            <div className='h-[100px]'>
-                            <img src={data.img} alt="" 
+                            <img src={data.image} alt="" 
                             className='max-w-35 block mx-auto
                             transform -translate-y-20 group-hover:scale-105 duration-300
                             drop-shadow-md'/>
@@ -54,7 +55,7 @@ const TopProducts = ({products, loading}) => {
                                 {data.description}
                             </p>
                             <button
-                              onClick={() => alert("This feature is currently unavailable")}
+                              onClick={() => navigate("/checkout", {state:data})}
                              className='bg-linear-to-r from-orange-200 to-orange-400 
                                transition-all duration-200 text-white py-1 px-4 rounded-full 
                                flex items-center gap-2 group'

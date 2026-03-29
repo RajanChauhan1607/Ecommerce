@@ -1,4 +1,5 @@
-import React,{useEffect, useState} from 'react'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React, { useState, useEffect } from 'react'
 import Navbar from './components/Navbar/Navbar'
 import Hero from './components/Hero/Hero'
 import Products from './components/Products/Products'
@@ -9,44 +10,54 @@ import Banner from './components/Banner/Banner'
 import Subscribe from './components/Subscribe/Subscribe'
 import Testimonial from './components/Testimonial/Testimonial'
 import Footer from './components/Footer/Footer'
+import Checkout from './components/Checkout/Checkout'
 const App = () => {
-
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  React.useEffect(()=>{
+  useEffect(() => {
     AOS.init({
       offset: 100,
-      duration:800,
-      easing:"ease-in-sine",
-      delay:100,
-    });
-    AOS.refresh();
+      duration: 800,
+      easing: "ease-in-sine",
+      delay: 100,
+    }, []);
 
-      fetch("https://ecommerce-backend-abw3.onrender.com/api/products/")
-        .then((res)=>res.json())
-        .then((data) => {
-          setProducts(data);
-          setLoading(false);
-        })
-        .catch((err) => console.log(err))
-
-
-  } , []);
-
-
+    fetch("https://ecommerce-backend-abw3.onrender.com/api/products/")
+      .then((res) => res.json())
+      .then((data) => {
+        setProducts(data);
+        setLoading(false);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
-    <div>
+    <BrowserRouter>
       <Navbar />
-      <Hero />
-      <Products products={products} loading={loading}/>
-      <TopProducts products={products} loading={loading}/> 
-      <Banner />
-      <Subscribe />
-      <Footer />
-    </div>
-  )
-}
 
-export default App
+      <Routes>
+        {/* Home Page */}
+        <Route
+          path="/"
+          element={
+            <>
+              <Hero />
+              <Products products={products} loading={loading} />
+              <TopProducts products={products} loading={loading} />
+              <Banner />
+              <Subscribe />
+            </>
+          }
+        />
+
+        {/* Checkout Page */}
+        <Route path="/checkout" element={<Checkout />} />
+      </Routes>
+
+      <Footer />
+    </BrowserRouter>
+  );
+};
+
+export default App;

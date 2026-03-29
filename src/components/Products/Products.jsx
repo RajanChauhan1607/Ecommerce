@@ -1,9 +1,4 @@
 import React from 'react'
-import Img1 from "../../assets/Women/women_ethnic.avif"
-import Img2 from "../../assets/Women/women_western.webp"
-import Img3 from "../../assets/Women/women_goggles.webp"
-import Img4 from "../../assets/Women/women_printed.avif"
-import Img5 from "../../assets/Women/women_fashiontshirt.webp"
 import { FaStar } from "react-icons/fa";
 
 
@@ -30,7 +25,7 @@ const Products = ({products}) => {
                             data-aos-delay={data.aosDelay}
                             key={data.id} 
                             className='space-y-3'>
-                                <img src={data.img} alt=""
+                                <img src={data.image} alt=""
                                 className='h-[220px] w-[150px] object-cover rounded-md '/>
 
                                 <div>
