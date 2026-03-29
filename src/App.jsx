@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect, useState} from 'react'
 import Navbar from './components/Navbar/Navbar'
 import Hero from './components/Hero/Hero'
 import Products from './components/Products/Products'
@@ -11,6 +11,9 @@ import Testimonial from './components/Testimonial/Testimonial'
 import Footer from './components/Footer/Footer'
 const App = () => {
 
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   React.useEffect(()=>{
     AOS.init({
       offset: 100,
@@ -19,14 +22,26 @@ const App = () => {
       delay:100,
     });
     AOS.refresh();
+
+      fetch("https://ecommerce-backend-abw3.onrender.com/api/products/")
+        .then((res)=>res.json())
+        .then((data) => {
+          setProducts(data);
+          setLoading(false);
+        })
+        .catch((err) => console.log(err))
+
+
   } , []);
+
+
 
   return (
     <div>
       <Navbar />
       <Hero />
-      <Products />
-      <TopProducts /> 
+      <Products products={products} loading={loading}/>
+      <TopProducts products={products} loading={loading}/> 
       <Banner />
       <Subscribe />
       <Footer />

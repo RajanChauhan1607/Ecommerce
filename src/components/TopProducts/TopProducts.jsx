@@ -4,28 +4,12 @@ import Img2 from "../../assets/shirt/Img2.webp"
 import Img3 from "../../assets/shirt/Img3.webp"
 import { FaStar } from "react-icons/fa";
 
-const ProductsData = [
-    {
-        id:1,
-        img:Img1,
-        title:"Casual Wear",
-        description:"So good",
-    },
-    {
-        id:2,
-        img:Img2,
-        title:"Printed Shirt",
-        description:"Wear it once",
-    },
-    {
-        id:3,
-        img:Img3,
-        title:"Women Shirt",
-        description:"You will be amazed",
-    },
 
-];
-const TopProducts = () => {
+const TopProducts = ({products, loading}) => {
+
+    if (loading) {
+    return <p className="text-center">Loading products...</p>;
+  }
   return (
     <div>
         <div className='container'>
@@ -42,7 +26,7 @@ const TopProducts = () => {
             className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3
             gap-20 md:gap-5 place-items-center'>
                 {
-                    ProductsData.map((data)=>(
+                    products.map((data)=>(
                         <div
                         data-aos="zoom-in"
                         key={data.id}

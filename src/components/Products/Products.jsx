@@ -5,51 +5,9 @@ import Img3 from "../../assets/Women/women_goggles.webp"
 import Img4 from "../../assets/Women/women_printed.avif"
 import Img5 from "../../assets/Women/women_fashiontshirt.webp"
 import { FaStar } from "react-icons/fa";
-const ProductsData = [
-    {
-        id:1,
-        img:Img1,
-        title:"Women Ethnic",
-        rating:5.0,
-        color:"White",
-        aosDelay:"0",
-    },
-    {
-        id:2,
-        img:Img2,
-        title:"Women Western",
-        rating:4.5,
-        color:"Red",
-        aosDelay:"200",
-    },
-    {
-        id:3,
-        img:Img3,
-        title:"Goggles",
-        rating:4.7,
-        color:"Brown",
-        aosDelay:"400",
-    },
-    {
-        id:4,
-        img:Img4,
-        title:"Printed T-Shirt",
-        rating:4.4,
-        color:"Yellow",
-        aosDelay:"600",
-    },
-    {
-        id:5,
-        img:Img5,
-        title:"Fashion T-Shirt",
-        rating:4.5,
-        color:"Pink",
-        aosDelay:"800",
-    },
 
-];
 
-const Products = () => {
+const Products = ({products}) => {
   return (
     <div className='mt-14 mb-12'>
         <div className='container'>
@@ -66,7 +24,7 @@ const Products = () => {
                 <div className='grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 place-items-center gap-5'>
                     {/* card section */}
                     {
-                        ProductsData.map((data)=>(
+                        products.map((data)=>(
                             <div 
                             data-aos="fade-up"
                             data-aos-delay={data.aosDelay}
