@@ -52,7 +52,7 @@ const App = () => {
         />
 
         {/* Checkout Page */}
-        <Route path="/checkout" element={<Checkout />} />
+       <Route path="/checkout/:id" element={<Checkout />} />
       </Routes>
 
       <Footer />

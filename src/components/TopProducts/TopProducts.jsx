@@ -55,7 +55,7 @@ const navigate = useNavigate();
                                 {data.description}
                             </p>
                             <button
-                              onClick={() => navigate("/checkout", {state:data})}
+                              onClick={() => navigate(`/checkout/${data.id}`)}
                              className='bg-linear-to-r from-orange-200 to-orange-400 
                                transition-all duration-200 text-white py-1 px-4 rounded-full 
                                flex items-center gap-2 group'
