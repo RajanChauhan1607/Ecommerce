@@ -1,16 +1,22 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import React, { useState, useEffect } from 'react'
-import Navbar from './components/Navbar/Navbar'
-import Hero from './components/Hero/Hero'
-import Products from './components/Products/Products'
-import TopProducts from './components/TopProducts/TopProducts'
+import React, { useState, useEffect } from "react";
+
+import Navbar from "./components/Navbar/Navbar";
+import Hero from "./components/Hero/Hero";
+import Products from "./components/Products/Products";
+import TopProducts from "./components/TopProducts/TopProducts";
+import Banner from "./components/Banner/Banner";
+import Subscribe from "./components/Subscribe/Subscribe";
+import Footer from "./components/Footer/Footer";
+import Checkout from "./components/Checkout/Checkout";
+import TopRated from "./pages/TopRated"; // ✅ IMPORT
+import Kids from "./pages/Kids";
+import Mens from "./pages/Mens";
+import Electronics from "./pages/Electronics";
+
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Banner from './components/Banner/Banner'
-import Subscribe from './components/Subscribe/Subscribe'
-import Testimonial from './components/Testimonial/Testimonial'
-import Footer from './components/Footer/Footer'
-import Checkout from './components/Checkout/Checkout'
+
 const App = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -21,7 +27,7 @@ const App = () => {
       duration: 800,
       easing: "ease-in-sine",
       delay: 100,
-    }, []);
+    });
 
     fetch("https://ecommerce-backend-abw3.onrender.com/api/products/")
       .then((res) => res.json())
@@ -37,7 +43,7 @@ const App = () => {
       <Navbar />
 
       <Routes>
-        {/* Home Page */}
+        {/* Home */}
         <Route
           path="/"
           element={
@@ -51,8 +57,17 @@ const App = () => {
           }
         />
 
-        {/* Checkout Page */}
-       <Route path="/checkout/:id" element={<Checkout />} />
+        {/* Checkout */}
+        <Route path="/checkout/:id" element={<Checkout />} />
+
+        {/* Top Rated Page */}
+        <Route
+          path="/top-rated"
+          element={<TopRated products={products} />}
+        />
+        <Route path="/kids" element={<Kids products={products} />} />
+        <Route path="/mens" element={<Mens products={products} />} />
+        <Route path="/electronics" element={<Electronics />} />
       </Routes>
 
       <Footer />
